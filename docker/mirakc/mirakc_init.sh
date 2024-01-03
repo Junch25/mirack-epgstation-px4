@@ -31,6 +31,21 @@ if [ -e "/etc/init.d/pcscd" ]; then
   done
 fi
 
+# shellcheck disable=SC1035
+if !(type "recpt1" > /dev/null 2>&1); then
+  apt-get update
+  apt-get install -y --no-install-recommends git autoconf automake
+
+  cd /tmp
+  git clone https://github.com/stz2012/recpt1.git
+  cd recpt1/recpt1
+  ./autogen.sh
+  ./configure --prefix /opt
+  make
+  make install
+fi
+
+recpt1 -v
 
 # mirack Start
 echo "mirack Start!"
