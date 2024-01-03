@@ -7,8 +7,11 @@ services:
     init: true
     restart: unless-stopped
     devices:
-      - /dev/dvb
       - /dev/bus
+      - /dev/px4video0
+      - /dev/px4video1
+      - /dev/px4video2
+      - /dev/px4video3
     ports:
       - 40772:40772
     volumes:
